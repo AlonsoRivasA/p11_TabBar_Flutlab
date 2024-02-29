@@ -1,43 +1,86 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(AppMiTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppMiTabBar extends StatelessWidget {
+  const AppMiTabBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      title: "Ejemplo TabBar Alonso Rivas",
       theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MiPaginaInicial(),
+      debugShowCheckedModeBanner: false,
     );
   }
-}
+} //Fin AppMiTabBar
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class MiPaginaInicial extends StatefulWidget {
+  const MiPaginaInicial({Key? key}) : super(key: key);
 
   @override
+  State<MiPaginaInicial> createState() => _MiPaginaInicialState();
+} //MiPaginaInicial
+
+class _MiPaginaInicialState extends State<MiPaginaInicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
-      ),
-    );
-  }
-}
+    return DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("TabBar Alonso Rivas"),
+            centerTitle: true,
+            bottom: TabBar(tabs: [
+              Tab(
+                text: "Juegos",
+                icon: Icon(Icons.bolt),
+              ),
+              Tab(
+                text: "Control",
+                icon: Icon(Icons.bookmark_added),
+              ),
+              Tab(
+                text: "Consolas",
+                icon: Icon(Icons.ad_units),
+              ),
+              Tab(
+                text: "Extras",
+                icon: Icon(Icons.headphones),
+              ),
+            ]),
+          ),
+          body: TabBarView(
+            children: const <Widget>[
+              Center(
+                child: Text(
+                  "Valorant",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "Control Series S",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "Xbox Series X",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "Audifonos",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                ),
+              ),
+            ],
+          ),
+        ));
+  } // Fin Widget
+} //_MiPaginaInicialState
